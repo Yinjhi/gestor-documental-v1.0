@@ -1,0 +1,25 @@
+<!-- app/templates/documentos_carpeta.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentos en carpeta {{ carpeta }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <h2 class="mb-4">📄 Documentos en carpeta: {{ carpeta }}</h2>
+        <ul class="list-group">
+            {% for archivo in archivos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ archivo }}
+                    <a href="{{ url_for('routes.descargar_archivo', carpeta=carpeta, nombre_archivo=archivo) }}" class="btn btn-sm btn-primary" target="_blank">Ver</a>
+                </li>
+            {% else %}
+                <li class="list-group-item">No hay documentos en esta carpeta.</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('routes.ver_documento') }}" class="btn btn-secondary mt-3">⬅ Volver a Carpetas</a>
+    </div>
+</body>
+</html>
